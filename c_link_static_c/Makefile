@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS_PATH = src
-INC_PATH = inc
+INC_PATH = ../libmatrix_c/inc
 OBJS_PATH = objs
 TARGET_DIR = build
 
@@ -15,21 +15,11 @@ all: header $(TARGET) lib
 
 $(TARGET): $(OBJS)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -I$(INC_PATH) -o $@ $(OBJS)
+	@$(CC) $(CFLAGS) -I$(INC_PATH) -o $@ $(OBJS) -L../libmatrix_c/build -lmatrix_c_static
 
 $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_PATH)
-
-lib: lib_dynamic lib_static
-
-lib_dynamic: $(OBJS)
-	@mkdir -p $(TARGET_DIR)
-	@$(CC) -shared -o $(TARGET_DIR)/libmatrix_c_dynamic.so $(OBJS)
-
-lib_static: $(OBJS)
-	@mkdir -p $(TARGET_DIR)
-	@ar rcs $(TARGET_DIR)/libmatrix_c_static.a $(OBJS)
 
 clean: header
 	@echo "Cleaning the project..."
