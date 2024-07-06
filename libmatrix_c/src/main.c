@@ -6,8 +6,8 @@
 // Function to initialize a matrix with specific values
 void	initialize_matrix(t_matrix *matrix, double start_value)
 {
-	for (size_t i = 0; i < matrix->rows; i++)
-		for (size_t j = 0; j < matrix->cols; j++)
+	for (int i = 0; i < matrix->rows; i++)
+		for (int j = 0; j < matrix->cols; j++)
 			matrix->data[i][j] = start_value++;
 }
 
@@ -15,33 +15,34 @@ void	initialize_matrix(t_matrix *matrix, double start_value)
 void	populate_matrix_random(t_matrix *matrix)
 {
 	srand(time(NULL)); // Seed for random number generation
-	for (size_t i = 0; i < matrix->rows; i++)
-		for (size_t j = 0; j < matrix->cols; j++)
+	for (int i = 0; i < matrix->rows; i++)
+		for (int j = 0; j < matrix->cols; j++)
 			matrix->data[i][j] = (double)rand() / RAND_MAX;
 }
 
 void	pretty_print_matrix(const t_matrix *matrix)
 {
+	printf("%s\n", matrix->name);
 	printf("┌");
-	for (size_t j = 0; j < matrix->cols - 1; j++)
+	for (int j = 0; j < matrix->cols - 1; j++)
 		printf("          ");
 	printf("         ┐\n");
-	for (size_t i = 0; i < matrix->rows; i++)
+	for (int i = 0; i < matrix->rows; i++)
 	{
 		printf("│");
-		for (size_t j = 0; j < matrix->cols; j++)
+		for (int j = 0; j < matrix->cols; j++)
 			printf("%8.3f ", matrix->data[i][j]);
 		printf(" │\n");
 		if (i < matrix->rows - 1)
 		{
 			printf("│");
-			for (size_t j = 0; j < matrix->cols - 1; j++)
+			for (int j = 0; j < matrix->cols - 1; j++)
 				printf("          ");
 			printf("         │\n");
 		}
 	}
 	printf("└");
-	for (size_t j = 0; j < matrix->cols - 1; j++)
+	for (int j = 0; j < matrix->cols - 1; j++)
 		printf("          ");
 	printf("         ┘\n");
 }
@@ -56,8 +57,8 @@ int	main(void)
 	t_matrix	*F;
 
 	// Create two 2x2 matrices
-	A = matrix_create(2, 2);
-	B = matrix_create(2, 2);
+	A = matrix_create(2, 2, "A");
+	B = matrix_create(2, 2, "B");
 	// Initialize matrices with specific values
 	initialize_matrix(A, 1.0);
 	initialize_matrix(B, 100.0);
@@ -66,17 +67,13 @@ int	main(void)
 	matrix_print(A);
 	printf("\nInitialized t_matrix B:\n\n");
 	matrix_print(B);
-	C = matrix_add(A, B);
-	printf("A + B:\n");
+	C = matrix_add(A, B, "A + B");
 	matrix_print(C);
-	D = matrix_sub(A, B);
-	printf("A - B:\n");
+	D = matrix_sub(A, B, "A - B");
 	matrix_print(D);
-	E = matrix_mul(A, B);
-	printf("A * B:\n");
+	E = matrix_mul(A, B, "A * B");
 	matrix_print(E);
-	F = matrix_transpose(A);
-	printf("Transpose of A:\n");
+	F = matrix_transpose(A, "Transpose of A");
 	pretty_print_matrix(F);
 	printf("\n-------------\n");
 	// Populate matrices with random values
