@@ -1,7 +1,9 @@
-#include "../inc/matrix.h"
+#include "../libmatrix_c/inc/matrix.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#define SIZE 700
 
 // Function to initialize a matrix with specific values
 void	initialize_matrix(t_matrix *matrix, double start_value)
@@ -57,8 +59,8 @@ int	main(void)
 	t_matrix	*F;
 
 	// Create two 2x2 matrices
-	A = matrix_create(2, 2, "A");
-	B = matrix_create(2, 2, "B");
+	A = matrix_create(SIZE, SIZE, "A");
+	B = matrix_create(SIZE, SIZE, "B");
 	// Initialize matrices with specific values
 	initialize_matrix(A, 1.0);
 	initialize_matrix(B, 100.0);
