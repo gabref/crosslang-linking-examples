@@ -25,11 +25,11 @@ lib: lib_dynamic lib_static
 
 lib_dynamic: $(OBJS)
 	@mkdir -p $(TARGET_DIR)
-	@$(CC) -shared -o $(TARGET_DIR)/libmatrix_c_dynamic.so $(OBJS)
+	@$(CC) -shared -o $(TARGET_DIR)/libmatrix_c_dynamic.so objs/matrix.o
 
 lib_static: $(OBJS)
 	@mkdir -p $(TARGET_DIR)
-	@ar rcs $(TARGET_DIR)/libmatrix_c_static.a $(OBJS)
+	@ar rcs $(TARGET_DIR)/libmatrix_c_static.a objs/matrix.o
 
 clean: header
 	@echo "Cleaning the project..."
