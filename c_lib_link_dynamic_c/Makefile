@@ -15,7 +15,7 @@ all: header $(TARGET)
 
 $(TARGET): $(OBJS)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -I$(INC_PATH) -shared -o $@ $(OBJS) -L../libmatrix_c/build -lmatrix_c_static
+	@$(CC) $(CFLAGS) -I$(INC_PATH) -shared -o $@ $(OBJS) -L../libmatrix_c/build -lmatrix_c_dynamic
 
 $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 	@mkdir -p $(dir $@)
