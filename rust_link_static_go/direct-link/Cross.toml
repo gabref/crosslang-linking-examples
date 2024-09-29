@@ -1,0 +1,37 @@
+[build]
+default-target = "x86_64-pc-windows-gnu"
+
+[target.x86_64-unknown-linux-gnu]
+xargo = false
+pre-build = [
+    "apt-get update && apt-get --assume-yes install pkg-config libssl-dev openssl",
+	"apt update",
+]   
+
+[target.i686-unknown-linux-gnu]
+xargo = false
+pre-build = [
+    "apt-get update && apt-get --assume-yes install pkg-config libssl-dev openssl",
+	"apt update",
+]   
+
+[target.i686-pc-windows-msvc]
+xargo = false
+
+[target.x86_64-pc-windows-msvc]
+xargo = false
+
+[target.i686-pc-windows-gnu]
+xargo = false
+pre-build = [
+	"apt update",
+	"apt-get install gcc-mingw-w64 gcc-multilib -y",
+]
+
+# https://stackoverflow.com/questions/41566495/golang-how-to-cross-compile-on-linux-for-windows
+[target.x86_64-pc-windows-gnu]
+xargo = false
+pre-build = [
+    "apt-get update && apt-get --assume-yes install pkg-config libssl-dev openssl",
+	"apt-get install gcc-mingw-w64 gcc-multilib -y",
+]   
