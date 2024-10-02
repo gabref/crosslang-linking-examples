@@ -36,3 +36,12 @@ You can run the linux code with a simple `cargo run`, and for the windows, you c
 sudo apt update && sudo apt install wine64
 wine target/x86_64-pc-windows-gnu/debug/direct-link.exe
 ```
+
+Table with versions of compilers used by target architecture:
+https://doc.rust-lang.org/nightly/rustc/platform-support.html
+
+github discussion
+https://github.com/golang/go/issues/23649
+
+link to official docs about iob
+https://stackoverflow.com/questions/30412951/unresolved-external-symbol-imp-fprintf-and-imp-iob-func-sdl2
